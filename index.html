@@ -1,0 +1,84 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart's Journey - Dating Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <div id="loading-screen">
+            <div class="loading-container">
+                <h1>Heart's Journey</h1>
+                <p>Loading your dating adventure...</p>
+                <div class="loading-bar">
+                    <div id="loading-progress"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="main-menu" class="screen">
+            <h1>Heart's Journey</h1>
+            <div class="menu-buttons">
+                <button id="new-game-btn">New Game</button>
+                <button id="continue-btn">Continue</button>
+                <button id="settings-btn">Settings</button>
+            </div>
+        </div>
+        
+        <div id="settings-screen" class="screen hidden">
+            <h2>Settings</h2>
+            <div class="settings-container">
+                <div class="setting-item">
+                    <label for="tts-toggle">Text-to-Speech:</label>
+                    <label class="switch">
+                        <input type="checkbox" id="tts-toggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <label for="text-speed">Text Speed:</label>
+                    <input type="range" id="text-speed" min="1" max="10" value="5">
+                </div>
+                <button id="back-from-settings">Back</button>
+            </div>
+        </div>
+        
+        <div id="character-select" class="screen hidden">
+            <h2>Choose Your Date</h2>
+            <div id="character-list"></div>
+            <button id="back-from-character-select">Back</button>
+        </div>
+        
+        <div id="location-select" class="screen hidden">
+            <h2>Choose Your Location</h2>
+            <div id="location-list"></div>
+            <button id="back-from-location-select">Back</button>
+        </div>
+        
+        <div id="game-screen" class="screen hidden">
+            <div id="location-image-container">
+                <img id="location-image" alt="Date location">
+            </div>
+            <div id="character-container">
+                <img id="character-image" alt="Character">
+            </div>
+            <div id="dialog-box">
+                <div id="character-name"></div>
+                <div id="dialog-text"></div>
+                <div id="choices-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <script type="importmap">
+    {
+        "imports": {
+            "vue": "https://cdn.jsdelivr.net/npm/vue@3.2.47/dist/vue.esm-browser.js"
+        }
+    }
+    </script>
+    <script src="app.js" type="module"></script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>

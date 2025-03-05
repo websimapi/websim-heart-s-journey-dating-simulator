@@ -1,0 +1,416 @@
+:root {
+    --primary-color: #ff6b9f;
+    --secondary-color: #8a4fff;
+    --text-color: #333;
+    --bg-color: #fff6f9;
+    --dialog-bg: rgba(255, 255, 255, 0.95);
+    --menu-bg: rgba(255, 255, 255, 0.9);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    overflow: hidden;
+    touch-action: manipulation;
+}
+
+#app {
+    max-width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background-size: cover;
+    background-position: center;
+    transition: opacity 0.5s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Loading Screen */
+#loading-screen {
+    background-color: var(--bg-color);
+    z-index: 100;
+}
+
+.loading-container {
+    text-align: center;
+}
+
+.loading-container h1 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.loading-bar {
+    width: 80%;
+    height: 20px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    margin: 1rem auto;
+    overflow: hidden;
+}
+
+#loading-progress {
+    height: 100%;
+    width: 0;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* Main Menu */
+#main-menu {
+    background: linear-gradient(to bottom, rgba(255, 107, 159, 0.3), rgba(138, 79, 255, 0.3));
+}
+
+#main-menu h1 {
+    font-size: 3rem;
+    color: var(--primary-color);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 80%;
+    max-width: 300px;
+}
+
+button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover, button:active {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Settings Screen */
+.settings-container {
+    background-color: var(--menu-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Switch Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* Character Select */
+#character-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 800px;
+}
+
+.character-card {
+    width: 150px;
+    height: 220px;
+    background-color: var(--menu-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.character-card:hover, .character-card:active {
+    transform: scale(1.05);
+}
+
+.character-image {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.character-info {
+    padding: 0.5rem;
+    text-align: center;
+}
+
+.character-name {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* Location Select */
+#location-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 800px;
+}
+
+.location-card {
+    width: 150px;
+    height: 120px;
+    background-color: var(--menu-bg);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.location-card:hover, .location-card:active {
+    transform: scale(1.05);
+}
+
+.location-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.location-name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 0.3rem;
+    text-align: center;
+}
+
+/* Game Screen */
+#game-screen {
+    position: relative;
+    padding: 0;
+}
+
+#location-image-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+#location-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#character-container {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 60%;
+    z-index: 2;
+}
+
+#character-image {
+    height: 100%;
+    object-fit: contain;
+}
+
+#dialog-box {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--dialog-bg);
+    padding: 1rem;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    max-height: 40%;
+    overflow-y: auto;
+}
+
+#character-name {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+#dialog-text {
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+#choices-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.choice-btn {
+    text-align: left;
+    background-color: rgba(255, 107, 159, 0.1);
+    border: 1px solid var(--primary-color);
+    color: var(--text-color);
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+}
+
+.choice-btn:hover, .choice-btn:active {
+    background-color: rgba(255, 107, 159, 0.3);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    #main-menu h1 {
+        font-size: 2.5rem;
+    }
+    
+    .settings-container {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .character-card {
+        width: 120px;
+        height: 180px;
+    }
+    
+    .character-image {
+        height: 120px;
+    }
+    
+    .location-card {
+        width: 120px;
+        height: 90px;
+    }
+    
+    #character-container {
+        height: 50%;
+    }
+    
+    #dialog-box {
+        max-height: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    #main-menu h1 {
+        font-size: 2rem;
+    }
+    
+    button {
+        font-size: 1rem;
+        padding: 0.7rem 1.2rem;
+    }
+    
+    .character-card {
+        width: 100px;
+        height: 160px;
+    }
+    
+    .character-image {
+        height: 100px;
+    }
+    
+    .location-card {
+        width: 100px;
+        height: 75px;
+    }
+}
+
